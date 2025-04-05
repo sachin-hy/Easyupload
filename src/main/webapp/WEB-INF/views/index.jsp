@@ -12,7 +12,45 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
- <script src='https://cdn.tailwindcss.com'></script> 
+ <script src='https://cdn.tailwindcss.com'></script>
+ 
+ 
+ <style>
+ 
+    #submitButton {
+    
+    padding: 10px 20px; 
+    border: none; 
+    background-color: #4CAF50; 
+    color: white; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    position: relative;
+
+}
+
+.spinner {
+ 
+    display: inline-block; 
+    margin-left: 10px; 
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db; 
+    border-radius: 50%;
+    width: 20px; 
+    height: 20px; 
+    animation: spin 1s linear infinite; 
+    
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+ </style> 
 </head>
 
 <body>
@@ -66,8 +104,11 @@
 
                       <button type="button"  id="submitButton" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 w-full" 
                           onclick="submitFile()">
-                       Upload
+                       <span id="uploadText">Upload</span>
+                       <div id="spinner" style="display: none;" class="spinner"></div>
+                       <span id="uploadPercentage" style="display: none; margin-left: 10px;"></span>
                       </button>
+                      
                </form>
                
            </div>

@@ -151,11 +151,16 @@ public class FIleController {
 			
 			StreamingResponseBody stream = out -> { 
 	            try (FileInputStream in = new FileInputStream(file)) {
-	                byte[] buffer = new byte[1024]; 
+	                byte[] buffer = new byte[5*1024 * 1024]; 
 	                int bytesRead;
 	                while ((bytesRead = in.read(buffer)) != -1) {
+	                	System.out.println("bytesRead value = " + bytesRead);
+	                	System.out.println("bufffer value = "+ buffer);
+	                	
 	                    out.write(buffer, 0, bytesRead); 
 	                }
+	                
+	                System.out.println("file transfer complete");
 	            } catch (IOException e) {
 	                e.printStackTrace(); 
 	            }
@@ -164,7 +169,8 @@ public class FIleController {
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentDispositionFormData("attachment", file.getName());
 	        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); 
-	        headers.setContentLength(file.length());
+	        long fileSize = file.length(); 
+	        headers.setContentLength(fileSize);
 	        headers.add("fileName", file.getName()); 
 	  
 	         
